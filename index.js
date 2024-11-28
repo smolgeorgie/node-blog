@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import multer from 'multer';
 
 const app = express();
 const port = 3000;
@@ -13,6 +14,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+// Configure Multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage: storage });
 
 // Initialize blog list
 let blogList = [];
@@ -27,13 +39,15 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.post('/home', (req, res) => {
+app.post('/home', upload.single('blogImage'), (req, res) => {
   const blogTitle = req.body.blogTitle;
   const blogDescription = req.body.blogDes;
+  const blogImage = req.file ? `/uploads/${req.file.filename}` : null;
   blogList.push({
     id: generateID(),
     title: blogTitle,
     description: blogDescription,
+    image: blogImage,
   });
   res.redirect('/bloglist');
 });
@@ -48,17 +62,30 @@ app.get('/blogDetails/:id', (req, res) => {
   res.render('blogDetails', { blogDetails: blogDetails });
 });
 
-app.post('/edit/:id', (req, res) => {
+app.get('/edit/:id', (req, res) => {
+  const blogId = req.params.id;
+  const blog = blogList.find((blog) => blog.id === parseInt(blogId));
+  if (!blog) {
+    res.send('<h1> Blog not found </h1>');
+    return;
+  }
+  res.render('edit', { blog: blog });
+});
+
+app.post('/edit/:id', upload.single('blogImage'), (req, res) => {
   const blogId = req.params.id;
   const editBlog = blogList.findIndex((blog) => blog.id === parseInt(blogId));
   if (editBlog === -1) {
     res.send('<h1> Something went wrong </h1>');
+    return;
   }
   const updatedTitle = req.body.blogTitle;
   const updatedDescription = req.body.blogDes;
+  const updatedImage = req.file ? `/uploads/${req.file.filename}` : blogList[editBlog].image;
 
   blogList[editBlog].title = updatedTitle;
   blogList[editBlog].description = updatedDescription;
+  blogList[editBlog].image = updatedImage;
 
   res.redirect('/bloglist');
 });

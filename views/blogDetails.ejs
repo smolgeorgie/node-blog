@@ -5,6 +5,9 @@
     <a href="/edit/<%= blogDetails.id %>" class="edit-btn">Edit</a>
   </div>
   <div class="overflow-div">
+    <% if (blogDetails.image) { %>
+      <img src="<%= blogDetails.image %>" alt="Blog Image" style="max-width: 100%; height: auto;" />
+    <% } %>
     <p><%= blogDetails.description %></p>
   </div>
 </div>
