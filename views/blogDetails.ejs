@@ -1,14 +1,22 @@
-<%- include('partials/header') %>
-<div class="container">
-  <div class="viewBlog-header">
-    <h1 class="title text-left"><%= blogDetails.title %></h1>
-    <a href="/edit/<%= blogDetails.id %>" class="edit-btn">Edit</a>
-  </div>
-  <div class="overflow-div">
-    <% if (blogDetails.image) { %>
-      <img src="<%= blogDetails.image %>" alt="Blog Image" style="max-width: 100%; height: auto;" />
-    <% } %>
-    <p><%= blogDetails.description %></p>
-  </div>
-</div>
-<%- include('partials/footer') %>
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head.ejs') %>
+<body>
+    <%- include('partials/header.ejs') %>
+    <main>
+        <div class="container">
+            <div class="viewBlog-header">
+                <h1 class="title text-left"><%= blogDetails.title %></h1>
+                <a href="/edit/<%= blogDetails.id %>" class="edit-btn">Edit</a>
+            </div>
+            <div class="overflow-div">
+                <% if (blogDetails.image) { %>
+                    <img src="<%= blogDetails.image %>" alt="Blog Image" style="max-width: 100%; height: auto;" />
+                <% } %>
+                <p><%= blogDetails.description %></p>
+            </div>
+        </div>
+    </main>
+    <%- include('partials/footer.ejs') %>
+</body>
+</html>

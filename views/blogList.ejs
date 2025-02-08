@@ -1,34 +1,40 @@
-<main>
-  <%- include('partials/header') %>
-  <% if (blogList.length < 1) { %>
-    <h1 class="no-blog-title">You don't have any blogs yet. Please visit the home page to create a new blog.</h1>
-  <% } else { %>
-    <h1 class="title">Your Blogs list</h1>
-    <div class="overflow-div">
-      <div class="home-container">
-        <% blogList.forEach((blog, index) => { %>
-          <div class="blog-card">
-            <span class="blog-number"><%= index + 1 %></span>
-            <h4><%= blog.title %></h4>
-            <% if (blog.image) { %>
-              <img src="<%= blog.image %>" alt="Blog Image" style="max-width: 100%; height: auto;" />
-            <% } %>
-            <p>
-              <%= blog.description.slice(0, 300) %>
-              <% if (blog.description.length > 299) { %> ...
-                <a class="view-btn" href="/blogDetails/<%= blog.id %>">View Blog</a>
-              <% } %>
-            </p>
-            <div class="btn-wrapper">
-              <form action="/delete/<%= blog.id %>" method="post">
-                <button class="delete-btn">Delete</button>
-              </form>
-              <a class="edit-btn" href="/edit/<%= blog.id %>">edit</a>
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head.ejs') %>
+<body>
+    <%- include('partials/header.ejs') %>
+    <main>
+        <% if (blogList.length < 1) { %>
+            <h1 class="no-blog-title">You don't have any blogs yet. Please visit the home page to create a new blog.</h1>
+        <% } else { %>
+            <h1 class="title">Your Blogs list</h1>
+            <div class="overflow-div">
+                <div class="home-container">
+                    <% blogList.forEach((blog, index) => { %>
+                        <div class="blog-card">
+                            <span class="blog-number"><%= index + 1 %></span>
+                            <h4><%= blog.title %></h4>
+                            <% if (blog.image) { %>
+                                <img src="<%= blog.image %>" alt="Blog Image" style="max-width: 100%; height: auto;" />
+                            <% } %>
+                            <p>
+                                <%= blog.description.slice(0, 300) %>
+                                <% if (blog.description.length > 299) { %> ...
+                                    <a class="view-btn" href="/blogDetails/<%= blog.id %>">View Blog</a>
+                                <% } %>
+                            </p>
+                            <div class="btn-wrapper">
+                                <form action="/delete/<%= blog.id %>" method="post">
+                                    <button class="delete-btn">Delete</button>
+                                </form>
+                                <a class="edit-btn" href="/edit/<%= blog.id %>">edit</a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
             </div>
-          </div>
-        <% }) %>
-      </div>
-    </div>
-  <% } %>
-  <%- include('partials/footer') %>
-</main>
+        <% } %>
+    </main>
+    <%- include('partials/footer.ejs') %>
+</body>
+</html>

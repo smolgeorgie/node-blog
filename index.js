@@ -40,9 +40,43 @@ function generateID() {
 }
 
 // Routes
-app.get('/', (req, res) => {
-  res.render('index');
+app.get("/", (req, res) => {
+  res.render("index", {
+      pageTitle: "Welcome to My Blog",
+      metaDescription: "Explore a collection of insightful articles on web development."
+  });
 });
+
+app.get("/blogList", (req, res) => {
+  res.render("blogList", {
+      pageTitle: "All Blogs",
+      metaDescription: "Browse all blog posts on our platform.",
+      blogList
+  });
+});
+
+app.get("/blogDetails/:id", (req, res) => {
+  const blogId = req.params.id;
+  const blog = blogList.find((b) => b.id === parseInt(blogId));
+
+  res.render("blogDetails", {
+      pageTitle: blog ? blog.title : "Blog Not Found",
+      metaDescription: blog ? blog.content.substring(0, 160) : "This blog post could not be found.",
+      blog
+  });
+});
+
+app.get("/edit/:id", (req, res) => {
+  const blogId = req.params.id;
+  const blog = blogList.find((b) => b.id === parseInt(blogId));
+
+  res.render("edit", {
+      pageTitle: blog ? `Edit: ${blog.title}` : "Edit Blog",
+      metaDescription: "Edit your blog post and update its content.",
+      blog
+  });
+});
+
 
 app.post('/home', upload.single('blogImage'), (req, res) => {
   const blogTitle = req.body.blogTitle;
