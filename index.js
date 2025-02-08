@@ -15,6 +15,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Start server
+app.listen(port, () => {
+  console.log(`Server is listening at http://localhost:${port}`);
+});
+
 // Configure Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -96,7 +101,3 @@ app.post('/delete/:id', (req, res) => {
   res.redirect('/bloglist');
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
