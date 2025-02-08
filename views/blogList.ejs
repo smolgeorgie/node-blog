@@ -1,4 +1,3 @@
-
 <%- include('partials/head.ejs') %>
 <body>
     <%- include('partials/header.ejs') %>
@@ -10,7 +9,7 @@
             <div class="overflow-div">
                 <div class="home-container">
                     <% blogList.forEach((blog, index) => { %>
-                        <div class="blog-card">
+                        <div class="blog-card <%= blog.isPinned ? 'pinned-blog' : '' %>">
                             <span class="blog-number"><%= index + 1 %></span>
                             <h4><%= blog.title %></h4>
                             <% if (blog.image) { %>
@@ -27,6 +26,9 @@
                                     <button class="delete-btn">Delete</button>
                                 </form>
                                 <a class="edit-btn" href="/edit/<%= blog.id %>">edit</a>
+                                <form action="/pin/<%= blog.id %>" method="post">
+                                    <button class="pin-btn"><%= blog.isPinned ? 'Unpin' : 'Pin' %></button>
+                                </form>
                             </div>
                         </div>
                     <% }) %>

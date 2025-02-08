@@ -42,16 +42,18 @@ function generateID() {
 // Routes
 app.get("/", (req, res) => {
   res.render("index", {
-      pageTitle: "Welcome to My Blog",
-      metaDescription: "Explore a collection of insightful articles on web development."
+    pageTitle: "Welcome to My Blog",
+    metaDescription: "Explore a collection of insightful articles on web development."
   });
 });
 
 app.get("/blogList", (req, res) => {
+  blogList.sort((a, b) => b.isPinned - a.isPinned); // Ensures pinned blogs are at the top
+
   res.render("blogList", {
-      pageTitle: "All Blogs",
-      metaDescription: "Browse all blog posts on our platform.",
-      blogList
+    pageTitle: "All Blogs",
+    metaDescription: "Browse all blog posts on our platform.",
+    blogList: blogList
   });
 });
 
@@ -60,23 +62,25 @@ app.get("/blogDetails/:id", (req, res) => {
   const blog = blogList.find((b) => b.id === parseInt(blogId));
 
   res.render("blogDetails", {
-      pageTitle: blog ? blog.title : "Blog Not Found",
-      metaDescription: blog ? blog.content.substring(0, 160) : "This blog post could not be found.",
-      blog
+    pageTitle: blog ? blog.title : "Blog Not Found",
+    metaDescription: blog ? blog.description.substring(0, 160) : "This blog post could not be found.",
+    blog
   });
 });
 
 app.get("/edit/:id", (req, res) => {
   const blogId = req.params.id;
   const blog = blogList.find((b) => b.id === parseInt(blogId));
-
-  res.render("edit", {
-      pageTitle: blog ? `Edit: ${blog.title}` : "Edit Blog",
-      metaDescription: "Edit your blog post and update its content.",
-      blog
+  if (!blog) {
+    res.send('<h1> Blog not found </h1>');
+    return;
+  }
+  res.render('edit', {
+    pageTitle: blog ? `Edit: ${blog.title}` : "Edit Blog",
+    metaDescription: "Edit your blog post and update its content.",
+    blog
   });
 });
-
 
 app.post('/home', upload.single('blogImage'), (req, res) => {
   const blogTitle = req.body.blogTitle;
@@ -87,28 +91,9 @@ app.post('/home', upload.single('blogImage'), (req, res) => {
     title: blogTitle,
     description: blogDescription,
     image: blogImage,
+    isPinned: false, // Add isPinned field, defaulting to false
   });
-  res.redirect('/bloglist');
-});
-
-app.get('/bloglist', (req, res) => {
-  res.render('blogList', { blogList: blogList });
-});
-
-app.get('/blogDetails/:id', (req, res) => {
-  const blogId = req.params.id;
-  const blogDetails = blogList.find((blog) => blog.id === parseInt(blogId));
-  res.render('blogDetails', { blogDetails: blogDetails });
-});
-
-app.get('/edit/:id', (req, res) => {
-  const blogId = req.params.id;
-  const blog = blogList.find((blog) => blog.id === parseInt(blogId));
-  if (!blog) {
-    res.send('<h1> Blog not found </h1>');
-    return;
-  }
-  res.render('edit', { blog: blog });
+  res.redirect('/blogList');
 });
 
 app.post('/edit/:id', upload.single('blogImage'), (req, res) => {
@@ -126,12 +111,24 @@ app.post('/edit/:id', upload.single('blogImage'), (req, res) => {
   blogList[editBlog].description = updatedDescription;
   blogList[editBlog].image = updatedImage;
 
-  res.redirect('/bloglist');
+  res.redirect('/blogList');
 });
 
 app.post('/delete/:id', (req, res) => {
   const blogId = req.params.id;
   blogList = blogList.filter((blog) => blog.id !== parseInt(blogId));
-  res.redirect('/bloglist');
+  res.redirect('/blogList');
 });
 
+// Route to pin/unpin blog post
+app.post('/pin/:id', (req, res) => {
+  const blogId = req.params.id;
+  const blog = blogList.find(blog => blog.id === parseInt(blogId));
+
+  if (blog) {
+    blog.isPinned = !blog.isPinned; // Toggle the pin status
+    res.redirect('/blogList'); // Redirect back to the blog list page
+  } else {
+    res.status(404).send('Blog not found');
+  }
+});

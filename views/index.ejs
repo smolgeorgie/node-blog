@@ -2,22 +2,22 @@
 <%- include('partials/head.ejs') %>
 <body>
     <%- include('partials/header.ejs') %>
-    <main>
-        <h1 class="title">Welcome to Blog app</h1>
-        <div class="form-container">
-            <p class="form-text">Step 1: Edit your Blog</p>
-            <p class="form-text">Step 2: Fill the form for creating your blog</p>
-            <form action="/home" method="post" enctype="multipart/form-data">
-                <label for="bTitle">Blog Title</label>
-                <input type="text" id="bTitle" name="blogTitle" placeholder="Your Title Here..." required />
-                <label for="bDes">Blog description</label>
-                <textarea id="bDes" name="blogDes" placeholder="Your Blog here..." rows="6" required></textarea>
-                <label for="bImage">Blog Image</label>
-                <input type="file" id="bImage" name="blogImage" />
-                <input type="submit" value="PUBLISH" />
-            </form>
-        </div>
-    </main>
+    <main id="mainContent">
+      <h1 class="title">Welcome to Blog app</h1>
+      <div class="form-container">
+          <p class="form-text">Step 1: Edit your Blog</p>
+          <p class="form-text">Step 2: Fill the form for creating your blog</p>
+          <form id="blogForm" action="/home" method="post" enctype="multipart/form-data">
+              <label for="bTitle">Blog Title</label>
+              <input type="text" id="bTitle" name="blogTitle" placeholder="Your Title Here..." required />
+              <label for="bDes">Blog description</label>
+              <textarea id="bDes" name="blogDes" placeholder="Your Blog here..." rows="6" required></textarea>
+              <label for="bImage">Blog Image</label>
+              <input type="file" id="bImage" name="blogImage" />
+              <input type="submit" id="submitBtn" value="PUBLISH" />
+          </form>
+      </div>
+  </main>
     <%- include('partials/footer.ejs') %>
 </body>
 </html>
