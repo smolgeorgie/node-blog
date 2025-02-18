@@ -3,14 +3,14 @@
 <body>
     <%- include('partials/header.ejs') %>
     <main>
-        <h1 class="title">Edit Blog</h1>
+        <h1 class="title">Bewerk blog</h1>
         <div class="form-container">
             <form action="/edit/<%= blog.id %>" method="post" enctype="multipart/form-data">
-                <label for="bTitle">Blog Title</label>
+                <label for="bTitle">Blog Titel</label>
                 <input type="text" id="bTitle" name="blogTitle" value="<%= blog.title %>" required />
-                <label for="bDes">Blog description</label>
+                <label for="bDes">Blog beschrijving</label>
                 <textarea id="bDes" name="blogDes" rows="6" required><%= blog.description %></textarea>
-                <label for="bImage">Blog Image</label>
+                <label for="bImage">Blog Afbeelding</label>
                 <% if (blog.image) { %>
                     <img src="<%= blog.image %>" alt="Blog Image" style="max-width: 100%; height: auto;" />
                 <% } %>

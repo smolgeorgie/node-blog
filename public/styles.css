@@ -70,42 +70,58 @@ main {
 
 .title {
     font-size: 24px;
-    margin-bottom: 20px;
+    margin: .5em 0 1em 1.5em;
     color: var(--primary-color);
+}
+
+.form-text {
+  margin-left: 2.5em;
+}
+
+
+#blogForm {
+  margin-top: 2.5em;
+  background: var(--form-background);
+  padding: 2em;
+  border-radius: 15px;
+
+}
+
+legend {
+  font-size: 2em;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: .5em;
+
 }
 
 fieldset {
     border: none;
     margin: 0;
     padding: 0;
+    
 }
 
-legend {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-bottom: .5em;
-}
-
-.form-container label {
+fieldset label {
+    font-size: 1.2em;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: .25em;
     color: var(--primary-color);
 }
 
-.form-container input[type="text"],
-.form-container textarea {
+fieldset input[type="text"],
+fieldset textarea {
     font-family: 'Comic Sans MS', cursive, sans-serif;
-    font-size: 14px;
-    width: 100%;
+    font-size: 16px;
+    width: 98%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid grey;
     border-radius: 4px;
-    background: var(--form-background);
+    background: #ffd1e1;
 }
 
-.form-container input[type="submit"] {
+fieldset input[type="submit"] {
     background-color: var(--primary-color);
     color: var(--text-color);
     border: none;
@@ -114,7 +130,7 @@ legend {
     border-radius: 4px;
 }
 
-.form-container input[type="submit"]:hover {
+fieldset input[type="submit"]:hover {
     background-color: var(--secondary-color);
 }
 
@@ -161,7 +177,7 @@ legend {
 
 .blog-card .delete-btn,
 .blog-card .edit-btn,
-.blog-card .pin-btn {
+.blog-card .pin-btn, #submitBtn {
     background-color: var(--primary-color);
     color: var(--text-color);
     border: none;
@@ -175,7 +191,7 @@ legend {
 
 .blog-card .delete-btn:hover,
 .blog-card .edit-btn:hover,
-.blog-card .pin-btn:hover {
+.blog-card .pin-btn:hover, #submitBtn:hover {
     background-color: var(--secondary-color);
 }
 

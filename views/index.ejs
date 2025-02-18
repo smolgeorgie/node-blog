@@ -2,20 +2,21 @@
 <body>
     <%- include('partials/header.ejs') %>
     <main id="mainContent">
-        <h1 class="title">Welcome to Blog app</h1>
+        <h1 class="title">Welkom bij Blog app</h1>
         <section class="form-container">
-            <p class="form-text">Step 1: Edit your Blog</p>
-            <p class="form-text">Step 2: Fill the form for creating your blog</p>
+            <p class="form-text">Stap 1: Bewerk je Blog</p>
+            <p class="form-text">Stap 2: Vul het formulier in om je blog te maken</p>
+            <p class="form-text">Stap 3: Voeg een afbeelding toe</p>
             <form id="blogForm" action="/home" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend>Blog Details</legend>
-                    <label for="bTitle">Blog Title</label>
-                    <input type="text" id="bTitle" name="blogTitle" placeholder="Your Title Here..." required />
-                    <label for="bDes">Blog Description</label>
-                    <textarea id="bDes" name="blogDes" placeholder="Your Blog here..." rows="6" required></textarea>
-                    <label for="bImage">Blog Image</label>
+                    <label for="bTitle">Blog Titel</label>
+                    <input type="text" id="bTitle" name="blogTitle" placeholder="Jouw Titel Hier..." required />
+                    <label for="bDes">Blog Beschrijving</label>
+                    <textarea id="bDes" name="blogDes" placeholder="Jouw Blog hier..." rows="6" required></textarea>
+                    <label for="bImage">Blog Afbeelding</label>
                     <input type="file" id="bImage" name="blogImage" required />
-                    <button type="submit" id="submitBtn">PUBLISH</button>
+                    <button type="submit" id="submitBtn">PUBLICEREN</button>
                 </fieldset>
             </form>
         </section>

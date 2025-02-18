@@ -3,34 +3,34 @@
     <%- include('partials/header.ejs') %>
     <main>
         <% if (blogList.length < 1) { %>
-            <h1 class="no-blog-title">You don't have any blogs yet. Please visit the home page to create a new blog.</h1>
+            <h1 class="no-blog-title">Je hebt nog geen blogs. Bezoek de homepagina om een nieuwe blog te maken.</h1>
         <% } else { %>
-            <h1 class="title">Your Blogs list</h1>
+            <h1 class="title">Jouw Blogs lijst</h1>
             <div class="overflow-div">
                 <section class="home-container">
                     <% blogList.forEach((blog, index) => { %>
                         <article class="blog-card <%= blog.isPinned ? 'pinned-blog' : '' %>">
                             <header class="blog-header">
                                 <% if (blog.image) { %>
-                                    <img src="<%= blog.image %>" alt="Blog Image" class="blog-image" />
+                                    <img src="<%= blog.image %>" alt="Blog Afbeelding" class="blog-image" />
                                 <% } %>
                                 <div class="blog-content">
                                     <h2><%= blog.title %></h2>
                                     <p>
                                         <%= blog.description.slice(0, 300) %>
                                         <% if (blog.description.length > 299) { %> ...
-                                            <a class="view-btn" href="/blogDetails/<%= blog.id %>">View Blog</a>
+                                            <a class="view-btn" href="/blogDetails/<%= blog.id %>">Bekijk Blog</a>
                                         <% } %>
                                     </p>
                                 </div>
                             </header>
                             <footer class="btn-wrapper">
                                 <form action="/delete/<%= blog.id %>" method="post">
-                                    <button class="delete-btn">Delete</button>
+                                    <button class="delete-btn">Verwijderen</button>
                                 </form>
-                                <a class="edit-btn" href="/edit/<%= blog.id %>">Edit</a>
+                                <a class="edit-btn" href="/edit/<%= blog.id %>">Bewerken</a>
                                 <form action="/pin/<%= blog.id %>" method="post">
-                                    <button class="pin-btn"><%= blog.isPinned ? 'Unpin' : 'Pin' %></button>
+                                    <button class="pin-btn"><%= blog.isPinned ? 'Losmaken' : 'Vastmaken' %></button>
                                 </form>
                             </footer>
                         </article>
