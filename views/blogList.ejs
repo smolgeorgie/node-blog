@@ -7,32 +7,35 @@
         <% } else { %>
             <h1 class="title">Your Blogs list</h1>
             <div class="overflow-div">
-                <div class="home-container">
+                <section class="home-container">
                     <% blogList.forEach((blog, index) => { %>
-                        <div class="blog-card <%= blog.isPinned ? 'pinned-blog' : '' %>">
-                            <span class="blog-number"><%= index + 1 %></span>
-                            <h4><%= blog.title %></h4>
-                            <% if (blog.image) { %>
-                                <img src="<%= blog.image %>" alt="Blog Image" style="max-width: 100%; height: auto;" />
-                            <% } %>
-                            <p>
-                                <%= blog.description.slice(0, 300) %>
-                                <% if (blog.description.length > 299) { %> ...
-                                    <a class="view-btn" href="/blogDetails/<%= blog.id %>">View Blog</a>
+                        <article class="blog-card <%= blog.isPinned ? 'pinned-blog' : '' %>">
+                            <header class="blog-header">
+                                <% if (blog.image) { %>
+                                    <img src="<%= blog.image %>" alt="Blog Image" class="blog-image" />
                                 <% } %>
-                            </p>
-                            <div class="btn-wrapper">
+                                <div class="blog-content">
+                                    <h2><%= blog.title %></h2>
+                                    <p>
+                                        <%= blog.description.slice(0, 300) %>
+                                        <% if (blog.description.length > 299) { %> ...
+                                            <a class="view-btn" href="/blogDetails/<%= blog.id %>">View Blog</a>
+                                        <% } %>
+                                    </p>
+                                </div>
+                            </header>
+                            <footer class="btn-wrapper">
                                 <form action="/delete/<%= blog.id %>" method="post">
                                     <button class="delete-btn">Delete</button>
                                 </form>
-                                <a class="edit-btn" href="/edit/<%= blog.id %>">edit</a>
+                                <a class="edit-btn" href="/edit/<%= blog.id %>">Edit</a>
                                 <form action="/pin/<%= blog.id %>" method="post">
                                     <button class="pin-btn"><%= blog.isPinned ? 'Unpin' : 'Pin' %></button>
                                 </form>
-                            </div>
-                        </div>
+                            </footer>
+                        </article>
                     <% }) %>
-                </div>
+                </section>
             </div>
         <% } %>
     </main>

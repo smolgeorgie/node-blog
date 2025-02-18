@@ -1,132 +1,187 @@
+:root {
+    --primary-color: #ff69b4;
+    --secondary-color: #ff1493;
+    --background-color: #ffefd5;
+    --container-background: #fff;
+    --container-shadow: rgba(0, 0, 0, 0.1);
+    --form-background: #fffacd;
+    --text-color: #fff;
+    --highlight-color: gold;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-  }
+    background-color: var(--background-color);
+}
 
-  main {
+main {
     padding: 2em;
-  }
-  
-  .site-header {
-    background-color: #333;
-    color: #fff;
+}
+
+.site-header {
+    background-color: var(--primary-color);
+    color: var(--text-color);
     padding: 10px 0;
     text-align: center;
-  }
-  
-  .site-header .site-identity h1 a {
-    color: #fff;
+}
+
+.site-header .site-identity h1 a {
+    color: var(--text-color);
     text-decoration: none;
-  }
-  
-  .site-navigation .nav {
+}
+
+.site-navigation .nav {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     justify-content: center;
-  }
-  
-  .site-navigation .nav li {
+}
+
+.site-navigation .nav li {
     margin: 0 15px;
-  }
-  
-  .site-navigation .nav li a {
-    color: #fff;
+}
+
+.site-navigation .nav li a {
+    color: var(--text-color);
     text-decoration: none;
-  }
-  
-  .site-footer {
-    background-color: #333;
-    color: #fff;
+}
+
+.site-footer {
+    background-color: var(--primary-color);
+    color: var(--text-color);
     text-align: center;
     padding: 10px 0;
     position: fixed;
     width: 100%;
     bottom: 0;
-  }
-  
-  .container {
+}
+
+.container {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .title {
+    background-color: var(--container-background);
+    box-shadow: 0 0 10px var(--container-shadow);
+    border-radius: 10px;
+}
+
+.title {
     font-size: 24px;
     margin-bottom: 20px;
-  }
-  
-  .form-container {
-    margin-bottom: 20px;
-  }
-  
-  .form-container label {
+    color: var(--primary-color);
+}
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+legend {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: .5em;
+}
+
+.form-container label {
     display: block;
     margin-bottom: 5px;
-  }
-  
-  .form-container input[type="text"],
-  .form-container textarea {
+    color: var(--primary-color);
+}
+
+.form-container input[type="text"],
+.form-container textarea {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 14px;
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  .form-container input[type="submit"] {
-    background-color: #333;
-    color: #fff;
+    background: var(--form-background);
+}
+
+.form-container input[type="submit"] {
+    background-color: var(--primary-color);
+    color: var(--text-color);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 4px;
-  }
-  
-  .form-container input[type="submit"]:hover {
-    background-color: #555;
-  }
-  
-  .blog-card {
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: var(--secondary-color);
+}
+
+.blog-number {
+    display: none;
+}
+
+.blog-card {
     border: 1px solid #ccc;
     padding: 20px;
     margin-bottom: 20px;
-    border-radius: 4px;
-  }
-  
-  .blog-card h4 {
+    border-radius: 10px;
+    background-color: var(--form-background);
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.blog-image {
+    max-width: 150px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.blog-content {
+    flex: 1;
+}
+
+.blog-card h4 {
     margin-top: 0;
-  }
-  
-  .blog-card .btn-wrapper {
+    color: var(--primary-color);
+}
+
+.blog-card .btn-wrapper {
     display: flex;
     justify-content: space-between;
-  }
-  
-  .blog-card .delete-btn,
-  .blog-card .edit-btn {
-    background-color: #333;
-    color: #fff;
+    margin-top: auto;
+}
+
+.blog-card .delete-btn,
+.blog-card .edit-btn,
+.blog-card .pin-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 4px;
     text-decoration: none;
-  }
-  
-  .blog-card .delete-btn:hover,
-  .blog-card .edit-btn:hover {
-    background-color: #555;
-  }
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 14px;
+}
 
-  .pinned-blog {
-    border: 2px solid gold; /* Highlight pinned blogs with a gold border */
-    background-color: #f8f8f8; /* Lighter background for pinned blogs */
+.blog-card .delete-btn:hover,
+.blog-card .edit-btn:hover,
+.blog-card .pin-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.pinned-blog {
+    border: 2px solid var(--highlight-color); /* Highlight pinned blogs with a gold border */
+    background-color: var(--form-background); /* Lighter background for pinned blogs */
     animation: slideIn 0.5s ease-in-out;
 }
 

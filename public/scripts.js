@@ -2,22 +2,22 @@ async function togglePin(blogId, isPinned) {
     try {
         const response = await fetch(`/pin/${blogId}`, { method: "POST" });
         if (response.ok) {
-            // Update UI
-            const blogCard = document.getElementById(`blog-${blogId}`);
-            if (blogCard) {
-                blogCard.style.border = isPinned ? "none" : "3px solid gold";
-                blogCard.style.backgroundColor = isPinned ? "white" : "#fffbe6";
-
-                // Update button text
-                const btn = blogCard.querySelector(".pin-btn");
-                btn.innerText = isPinned ? "Pin" : "Unpin";
-
-                // Move pinned blogs to the top
-                reorderBlogs();
-            }
+            updateBlogUI(blogId, isPinned);
+            reorderBlogs();
         }
     } catch (error) {
         console.error("Error pinning blog:", error);
+    }
+}
+
+function updateBlogUI(blogId, isPinned) {
+    const blogCard = document.getElementById(`blog-${blogId}`);
+    if (blogCard) {
+        blogCard.style.border = isPinned ? "none" : "3px solid gold";
+        blogCard.style.backgroundColor = isPinned ? "white" : "#fffbe6";
+
+        const pinButton = blogCard.querySelector(".pin-btn");
+        pinButton.innerText = isPinned ? "Pin" : "Unpin";
     }
 }
 
@@ -31,5 +31,5 @@ function reorderBlogs() {
         return isPinnedB - isPinnedA;
     });
 
-    blogs.forEach(blog => container.appendChild(blog)); // Reorder in DOM
+    blogs.forEach(blog => container.appendChild(blog));
 }
