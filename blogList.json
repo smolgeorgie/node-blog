@@ -1,0 +1,16 @@
+[
+  {
+    "id": 4756,
+    "title": "hallo",
+    "description": "dit si een blog",
+    "image": "/uploads/1740058053575.png",
+    "isPinned": false
+  },
+  {
+    "id": 7291,
+    "title": "een andere blog",
+    "description": "hallo :)",
+    "image": "/uploads/1740058068971.png",
+    "isPinned": false
+  }
+]
