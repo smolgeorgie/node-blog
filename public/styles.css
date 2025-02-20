@@ -9,15 +9,24 @@
     --highlight-color: gold;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     font-family: 'Comic Sans MS', cursive, sans-serif;
     margin: 0;
     padding: 0;
     background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
-    padding: 2em;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .site-header {
@@ -54,9 +63,6 @@ main {
     color: var(--text-color);
     text-align: center;
     padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
 }
 
 .container {
@@ -68,9 +74,21 @@ main {
     border-radius: 10px;
 }
 
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30em;
+    margin: 5em 2em 2em 2em;
+    background-color: var(--form-background);
+    box-shadow: 0 0 10px var(--container-shadow);
+    border-radius: 10px;
+}
+
 .title {
     font-size: 24px;
-    margin: .5em 0 1em 1.5em;
+    margin: 1em 0 1em 1.5em;
     color: var(--primary-color);
 }
 
@@ -78,13 +96,11 @@ main {
   margin-left: 2.5em;
 }
 
-
 #blogForm {
-  margin-top: 2.5em;
+  margin: 2em;
   background: var(--form-background);
   padding: 2em;
   border-radius: 15px;
-
 }
 
 legend {
@@ -92,14 +108,12 @@ legend {
   font-weight: bold;
   color: var(--primary-color);
   margin-bottom: .5em;
-
 }
 
 fieldset {
     border: none;
     margin: 0;
     padding: 0;
-    
 }
 
 fieldset label {
@@ -139,9 +153,10 @@ fieldset input[type="submit"]:hover {
 }
 
 .blog-card {
-    border: 1px solid #ccc;
+    border: 1px solid transparent;
     padding: 20px;
-    margin-bottom: 20px;
+    margin: 1.5em;
+    box-shadow: 0 0 10px var(--container-shadow);
     border-radius: 10px;
     background-color: var(--form-background);
     display: flex;
