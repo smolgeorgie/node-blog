@@ -1,22 +1,27 @@
 <%- include('partials/head.ejs') %>
 
-<body>
-    <main>
-        <div class="login-container">
-            <h1>Register</h1>
-            <form action="/register" method="post">
-                <fieldset>
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                    <button type="submit">Register</button>
-                </fieldset>
-            </form>
-            <p class="form-text">Already have an account? <a href="/login">Login here</a></p>
-        </div>
-    </main>
-    <%- include('partials/footer.ejs') %>
-</body>
+    <body>
+        <main>
+            <div class="login-container">
+                <h1>Register</h1>
+                <form action="/register" method="post">
+                    <fieldset>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                        <% if (typeof error !=='undefined' ) { %>
+                            <div class="error">
+                                <%= error %>
+                            </div>
+                            <% } %>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                        <button type="submit">Register</button>
+                    </fieldset>
+                </form>
+                <p class="form-text">Already have an account? <a href="/login">Login here</a></p>
+            </div>
+        </main>
+        <%- include('partials/footer.ejs') %>
+    </body>
 
-</html>
+    </html>

@@ -86,6 +86,11 @@ main {
     border-radius: 10px;
 }
 
+.error {
+    color: red;
+    margin: -10px 0 10px 5px; /* Adjust the margin as needed */
+}
+
 .title {
     font-size: 24px;
     margin: 1em 0 1em 1.5em;

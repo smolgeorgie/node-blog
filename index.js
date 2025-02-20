@@ -79,9 +79,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/register", (req, res) => {
+  const error = req.query.error;
   res.render("register", {
     pageTitle: "Register",
-    metaDescription: "Create a new account."
+    metaDescription: "Create a new account.",
+    error: error
   });
 });
 
@@ -91,7 +93,7 @@ app.post("/register", async (req, res) => {
   const existingUser = users.find(user => user.username === username);
 
   if (existingUser) {
-    res.send('Username already exists');
+    res.redirect('/register?error=Username already exists');
     return;
   }
 
