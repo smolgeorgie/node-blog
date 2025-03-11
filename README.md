@@ -19,3 +19,6 @@ To run this project on your local machine, follow these steps:
 ### Prerequisites
 Make sure you have **Node.js** installed. If you don’t have it, you can download and install it from [here](https://nodejs.org/).
 
+1. `cd node-blog`
+2. `npm install`
+3. `npm start`
