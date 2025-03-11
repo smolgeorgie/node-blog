@@ -19,8 +19,3 @@ To run this project on your local machine, follow these steps:
 ### Prerequisites
 Make sure you have **Node.js** installed. If you don’t have it, you can download and install it from [here](https://nodejs.org/).
 
-### Clone the Repository
-1. Open your terminal.
-2. Clone the repository by running:
-   
-   git clone \https://github.com/smolgeorgie/node-blog.git
