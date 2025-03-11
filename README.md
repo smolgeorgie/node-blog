@@ -23,4 +23,4 @@ Make sure you have **Node.js** installed. If you don’t have it, you can downlo
 1. Open your terminal.
 2. Clone the repository by running:
    
-   git clone https://github.com/smolgeorgie/node-blog.git
+   git clone \https://github.com/smolgeorgie/node-blog.git
